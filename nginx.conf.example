@@ -1,0 +1,11 @@
+server {
+    listen 443 ssl http2;
+    server_name calistenia.tudominio.es;
+    # ssl_certificate / ssl_certificate_key (certbot)
+    root /srv/calistenia;
+    index index.html;
+    types { application/manifest+json webmanifest; }
+    location = /sw.js      { add_header Cache-Control "no-cache"; }
+    location = /index.html { add_header Cache-Control "no-cache"; }
+    location / { try_files $uri $uri/ /index.html; }
+}
